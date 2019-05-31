@@ -1,0 +1,9 @@
+<div id="filter-caption" class="well">
+    <ul style="color: #333;margin:0" class="unstyled">
+        {% for field in filter.fields if field.widget.active(field.value) %}
+        <li style="padding: 5px">
+            {{ field.widget.renderCaption(field.label, prefix ~ ':' ~ (field.path | replace('.',':')), field.value, field.data) | raw }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>

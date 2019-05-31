@@ -1,0 +1,21 @@
+{% set length = 0 %}
+{% for field in filter.fields %}
+
+    {% set length = length + field.length %}
+
+    {% if loop.index == 1 %}
+        <div class="row">
+    {% endif %}
+    {% if length > 12 %}
+        </div>
+        <div class="row">
+    {% endif %}
+
+    {{ field.widget.renderField(field.label, prefix ~ ':' ~ (field.path | replace('.',':')), field.value, field.data, field.length) | raw }}
+
+    {% if length > 12 %}
+        {% set length = field.length %}
+    {% endif %}
+
+{% endfor %}
+        </div>

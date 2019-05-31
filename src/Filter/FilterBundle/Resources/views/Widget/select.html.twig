@@ -1,0 +1,11 @@
+<div class="col-md-{{ length }}">
+    <div class="form-group">
+        <label class="control-label {{ active ? 'active' : '' }}">{{ label | trans }}</label>
+
+        <select class="form-control customSelect" name="{{ name }}">
+            {% for key, option in data %}
+                <option {{ key in value ? 'selected="selected"' : '' }} value="{{ key }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>

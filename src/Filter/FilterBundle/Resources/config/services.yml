@@ -1,0 +1,92 @@
+services:
+
+    filter:
+        class: Filter\FilterBundle\Service\Filter\Manager
+        scope: request
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - @request
+            - @knp_paginator
+            - @event_dispatcher
+            - @security.authorization_checker
+            - @filter.widget_collection
+
+    filter.widget_collection:
+        class: Filter\FilterBundle\Service\Filter\WidgetCollection
+
+    filter.filter_extension:
+        class: Filter\FilterBundle\Twig\FilterExtension
+        arguments:
+            - @service_container
+        tags:
+            - { name: twig.extension }
+
+    filter.text_field_widget:
+        class: Filter\FilterBundle\Widget\TextField
+        arguments:
+            - @twig
+        tags:
+            - { name: filter.widget }
+
+    filter.integer_widget:
+        class: Filter\FilterBundle\Widget\Integer
+        arguments:
+            - @twig
+        tags:
+            - { name: filter.widget }
+
+    filter.checkbox_widget:
+        class: Filter\FilterBundle\Widget\Checkbox
+        arguments:
+            - @twig
+        tags:
+            - { name: filter.widget }
+
+    filter.multiselect_widget:
+        class: Filter\FilterBundle\Widget\Multiselect
+        arguments:
+            - @twig
+        tags:
+            - { name: filter.widget }
+
+    filter.select_widget:
+        class: Filter\FilterBundle\Widget\Select
+        arguments:
+            - @twig
+        tags:
+            - { name: filter.widget }
+
+    filter.datetime_range_widget:
+        class: Filter\FilterBundle\Widget\DatetimeRange
+        arguments:
+            - @twig
+        tags:
+            - { name: filter.widget }
+
+    filter.integer_range_widget:
+        class: Filter\FilterBundle\Widget\IntegerRange
+        arguments:
+            - @twig
+        tags:
+            - { name: filter.widget }
+
+    filter.date_range_widget:
+        class: Filter\FilterBundle\Widget\DateRange
+        arguments:
+            - @twig
+        tags:
+            - { name: filter.widget }
+
+    filter.time_range_widget:
+        class: Filter\FilterBundle\Widget\TimeRange
+        arguments:
+            - @twig
+        tags:
+            - { name: filter.widget }
+
+    filter.money_widget:
+        class: Filter\FilterBundle\Widget\Money
+        arguments:
+            - @twig
+        tags:
+            - { name: filter.widget }

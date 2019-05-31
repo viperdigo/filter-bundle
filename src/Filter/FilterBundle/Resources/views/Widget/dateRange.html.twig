@@ -1,0 +1,14 @@
+<div class="col-md-{{ length }}">
+    <div class="form-group">
+        <label class="control-label">{{ label | trans }}</label>
+
+        <div class="input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd">
+            <input placeholder="{{ 'daterange start' | trans }}" type="text" value="{{ value ? value.from : '' }}"
+                   name="{{ name }}[from]" class="form-control">
+												<span class="input-group-addon">
+												{{ "to" | trans }} </span>
+            <input placeholder="{{ 'daterange end' | trans }}" type="text" value="{{ value ? value.to : '' }}"
+                   name="{{ name }}[to]" class="form-control">
+        </div>
+    </div>
+</div>

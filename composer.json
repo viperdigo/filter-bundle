@@ -1,0 +1,10 @@
+{
+    "name": "filter/filter-bundle",
+    "description": "Filter Bundle integrated with Doctrine entities.",
+    "autoload": {
+        "psr-0": { "Filter": "src/" }
+    },
+    "require": {
+        "php": ">=5.3.3"
+    }
+}

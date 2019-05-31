@@ -1,0 +1,12 @@
+<span class="span4 form-label {{ active ? 'active' : '' }}">
+    <i class="icon icon-info"></i> {{ label | trans }}
+</span>
+
+<div class="span8 no-left-margin range-container">
+    <div class="span6 no-left-margin">
+        <input placeholder="{{ 'start' | trans }}" type="text" value="{{ value ? value.from : '' }}" name="{{ name }}[from]" class="m-wrap span12">
+    </div>
+    <div class="span6">
+        <input placeholder="{{ 'end' | trans }}" type="text" value="{{ value ? value.to : '' }}" name="{{ name }}[to]" class="m-wrap right span12">
+    </div>
+</div>

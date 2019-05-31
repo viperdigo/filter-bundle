@@ -1,0 +1,86 @@
+{% include "FilterBundle:Filter:style.html.twig" %}
+{% include "FilterBundle:Filter:scripts.html.twig" %}
+
+
+<form class="horizontal-form" action="" method="get">
+    <div class="portlet light bordered custom-filter">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="icon-equalizer font-blue-sunglo"></i>
+                <span class="caption-subject font-blue-sunglo bold uppercase">{{ "Filter"|trans }}</span>
+                <span class="caption-helper">{{ filter.count ? '(' ~ filter.count ~ ')' : '' }}</span>
+            </div>
+
+
+            <div class="tools">
+                {% if filter.actions|length > 0 %}
+                    <div class="btn-group">
+                        <a data-toggle="dropdown" href="javascript:;" class="btn btn-circle btn-default btn-sm">
+                            <i class="icon-settings"></i> {{ "Actions"|trans }} <i class="fa fa-angle-down"></i>
+                        </a>
+
+
+                        <ul role="menu" class="dropdown-menu">
+                            {% set route = app.request.get('_route') %}
+
+                            {% for propertyName, propertyValue in filter.actions %}
+
+                                {% set name = propertyValue.properties['name'] %}
+
+                                {% set icon = "" %}
+                                {% if(propertyValue.properties['icon'] is defined) %}
+                                    {% set icon = propertyValue.properties['icon'] %}
+                                {% endif %}
+
+                                <li class="filterActionButton {{ icon }}">
+                                    <input type="submit" name="{{ prefix }}:action[{{ name }}]"
+                                           value="{{ name|trans }}"/>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                {% if filter.reallyFiltered %}
+                    <a href="" class="expand"></a>
+                {% else %}
+                    <a href="" class="collapse"></a>
+                {% endif %}
+            </div>
+        </div>
+        {% if filter.reallyFiltered %}
+            {% set display = "display:none" %}
+        {% else %}
+            {% set display = '' %}
+        {% endif %}
+
+        <div class="portlet-body form" style="{{ display }};">
+            {#<div class="portlet-body form">#}
+
+            <div class="form-body">
+                {% include "FilterBundle:Filter:fields.html.twig" with { 'filter': filter } %}
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-push-11 col-md-1">
+                                <input style="margin-left: -15px;" type="submit" name="{{ prefix }}:filtered"
+                                       value="{{ "Filtrate"|trans }}" class="btn green" id="btn-filter"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    {#{% if filter.reallyFiltered %}#}
+    {#{% include "FilterBundle:Filter:caption.html.twig" %}#}
+    {#{% endif %}#}
+
+</form>
